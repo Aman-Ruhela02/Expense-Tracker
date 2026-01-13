@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL =  "http://localhost:3000/api/v2/"
+const BASE_URL =  "https://expense-tracker-backend-0sjt.onrender.com"
 
 const api = axios.create({baseURL : BASE_URL, timeout: 8000})
 
