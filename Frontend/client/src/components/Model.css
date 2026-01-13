@@ -1,0 +1,86 @@
+.modelbox{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  
+
+  background-color: rgba(0, 0, 0, 0.3); /* bg-opacity-30 */
+  backdrop-filter: blur(16px);          /* backdrop-blur-lg */
+
+  z-index: 50;
+
+  display: flex;
+  justify-content: center;
+  /* box-shadow: -2px -2px -10px -2px gray; */
+   /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); */
+}
+
+.box div{
+    margin: 0.5rem 0 ;
+}
+
+textarea{
+    margin-top: 0.7rem;
+    border-radius: 8px;
+    padding: 2px;
+    width: 100%;
+}
+
+.closebutton{
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+}
+.modelnav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-btn{
+    color: black;
+    background: rgb(237, 245, 248);
+    margin: 3px;
+    
+}
+
+.category-btn:hover{
+    border: 2px solid skyblue;
+    cursor: pointer;
+}
+
+.category-btn:checkmark{
+    background-color: rgb(146, 200, 224);
+    border: 2px solid rgb(2, 96, 132);
+    /* transition: all; */
+}
+
+
+
+.box{
+  width: 25%;
+  background-color: white;
+  height: 70vh;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+
+
+.amount{
+    display: flex;
+}
+.submitdiv{
+    display: flex;
+    justify-content: space-between;
+}
+.addbutton{
+    width: 80%;
+    cursor: pointer;
+}
+
+.cancelbtn{
+    cursor: pointer;
+}
