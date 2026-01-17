@@ -10,7 +10,7 @@ const port = process.env.PORT || 8000
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin:['http://localhost:5173','https://expensetracker-mmel.onrender.com']
+    origin:'https://expensetracker-mmel.onrender.com'
 }))
 
 dbConnection()
