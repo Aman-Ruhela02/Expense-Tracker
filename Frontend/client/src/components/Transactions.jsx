@@ -15,11 +15,7 @@ function Transactions() {
   // 🔁 stable fetch function
   const fetchData = useCallback(async () => {
     try {
-<<<<<<< HEAD
       const res = await axios.get("https://expensetracker-mmel.onrender.com/api/v2/expense/");
-=======
-      const res = await axios.get("https://expense-tracker-backend-0sjt.onrender.com");
->>>>>>> 1daa06d63af31a111690e2f3550d39b33424a097
       setData(res.data.data || []);
     } catch (error) {
       console.log({ errmsg: error });
