@@ -67,6 +67,12 @@ textarea{
   margin-top: 0.8rem;
 }
 
+@media (max-width: 768px) {
+  .box {
+    width: 60%;
+  }
+}
+
 
 
 .amount{
