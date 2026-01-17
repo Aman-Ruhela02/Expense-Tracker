@@ -25,7 +25,7 @@ function SpendingChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v2/expense/");
+        const res = await axios.get("https://expensetracker-mmel.onrender.com/api/v2/expense/");
         setExpenses(Array.isArray(res.data.data) ? res.data.data : []);
       } catch (error) {
         console.log(error);

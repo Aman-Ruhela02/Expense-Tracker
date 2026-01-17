@@ -20,7 +20,7 @@ function Model({ onClose }) {
       return;
     }
 
-    let res = await fetch("http://localhost:3000/api/v2/expense/", {
+    let res = await fetch("https://expensetracker-mmel.onrender.com/api/v2/expense/", {
       method: 'POST',
       body: JSON.stringify({ description, amount, date, textarea, category }),
       headers: {
