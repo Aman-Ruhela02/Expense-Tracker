@@ -42,7 +42,7 @@ function Transactions() {
     try {
       if (!window.confirm("Delete this expense?")) return;
 
-      await axios.delete(`http://localhost:3000/api/v2/expense/${id}`);
+      await axios.delete(`https://expensetracker-mmel.onrender.com/api/v2/expense/${id}`);
 
       // optional optimistic update
       setData(prev => prev.filter(item => item._id !== id));
