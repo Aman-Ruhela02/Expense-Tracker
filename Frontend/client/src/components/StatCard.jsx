@@ -18,7 +18,11 @@ function StatCard() {
   // 🔁 stable function
   const fetchAmount = useCallback(async () => {
     try {
+<<<<<<< HEAD
       const res = await axios.get("https://expensetracker-mmel.onrender.com/api/v2/expense/");
+=======
+      const res = await axios.get("https://expense-tracker-backend-0sjt.onrender.com");
+>>>>>>> 1daa06d63af31a111690e2f3550d39b33424a097
       const expense = res.data.data || [];
 
       const total = expense.reduce((sum, exp) => sum + exp.amount, 0);

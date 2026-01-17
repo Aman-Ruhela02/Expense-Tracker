@@ -20,7 +20,11 @@ function CategoryChart() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
+<<<<<<< HEAD
           "https://expensetracker-mmel.onrender.com/api/v2/expense/"
+=======
+          "https://expense-tracker-backend-0sjt.onrender.com"
+>>>>>>> 1daa06d63af31a111690e2f3550d39b33424a097
         );
 
         const expenses = Array.isArray(res.data.data)
