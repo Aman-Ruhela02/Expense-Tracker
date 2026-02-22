@@ -33,7 +33,7 @@ function SpendingChart() {
       }
     };
     fetchData();
-  }, []);
+  }, [expenses]);
 
   // last 7 days
   const dates = [...Array(7)].map((_, i) => {

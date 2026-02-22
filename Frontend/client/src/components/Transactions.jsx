@@ -58,23 +58,7 @@ function Transactions() {
     0
   );
 
-// const filteredData = data.filter((item) =>
-//   item.description.toLowerCase().includes(search.toLowerCase()) ||
-//   item.category.toLowerCase().includes(search.toLowerCase())
-// );
-
-
-
-// const filteredData = data.filter(item => {
-//   const matchSearch =
-//     item.description.toLowerCase().includes(search.toLowerCase()) ||
-//     item.category.toLowerCase().includes(search.toLowerCase());
-
-//   const matchCategory =
-//     category === "" || item.category === category;
-
-//   return matchSearch && matchCategory;
-// });
+  
 
 
 
