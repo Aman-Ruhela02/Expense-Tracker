@@ -16,7 +16,11 @@ const port = process.env.PORT || 8000
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: ['https://expense-tracker-5vz4.onrender.com', 'http://localhost:5173']
+    origin: [
+        'https://expense-tracker-5vz4.onrender.com',
+        'https://expensetracker-mmel.onrender.com',
+        'http://localhost:5173'
+    ]
 }))
 
 dbConnection()
@@ -32,7 +36,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
-const server = app.listen(port,(req,res)=>{
+const server = app.listen(port, () => {
     console.log(`server is running on the port ${port}`);
 })
 

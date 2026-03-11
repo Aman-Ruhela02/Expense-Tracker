@@ -1,4 +1,13 @@
 {
+  "name": "expense-tracker-root",
+  "version": "1.0.0",
+  "description": "Root configuration for Expense Tracker",
+  "scripts": {
+    "install:all": "npm install && cd Frontend/client && npm install && cd ../../Backend && npm install",
+    "build": "cd Frontend/client && npm run build",
+    "start": "node Backend/server.js",
+    "render-build": "npm install && cd Frontend/client && npm install && npm run build && cd ../../Backend && npm install"
+  },
   "dependencies": {
     "axios": "^1.13.2"
   }
