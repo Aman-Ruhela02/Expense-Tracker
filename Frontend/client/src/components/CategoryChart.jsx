@@ -78,16 +78,7 @@ function CategoryChart() {
   };
 
   return (
-    <div
-      style={{
-        width: "300px",
-        height: "300px",
-        boxShadow: "2px 2px 10px 1px gray",
-        borderRadius: "5px",
-        marginRight: "3rem",
-        padding: "1rem",
-      }}
-    >
+    <div className="categorydiv">
       {chartData ? (
         <Doughnut data={chartData} options={options} />
       ) : (

@@ -9,11 +9,19 @@ padding-top: 0.5rem;
 /* padding-bottom: 2vh; */
 margin-bottom: 0.2rem;
 /* width: 60%; */
-height: 300px;
-width: 500px;
+height: 400px;
+width: 45%;
+min-width: 300px;
 /* padding-bottom: 4rem; */
 padding-top: 1rem;
+}
 
+@media (max-width: 768px) {
+  .spendingdiv {
+    width: 95%;
+    margin-left: 2.5%;
+    height: 350px;
+  }
 }
 .spendingdiv p{
    margin-left: 1rem;

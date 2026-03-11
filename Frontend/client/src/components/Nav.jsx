@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 function Nav() {
   const [showModal, setShowModal] = useState(false);
-  const { user, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -22,10 +21,14 @@ function Nav() {
         <p>Manage your finances with ease</p>
       </div>
 
-      <div className="navaddbutton">
+      <button className="mobile-menu-toggle" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        {isMobileMenuOpen ? '✕' : '☰'}
+      </button>
+
+      <div className={`navaddbutton ${isMobileMenuOpen ? 'active' : ''}`}>
          {user && <span className="user-greeting">Hi, {user.name}</span>}
-         <button onClick={() => setShowModal(true)}>Add Expense</button>
-         <button onClick={handleLogout} className="btn-logout">Logout</button>
+         <button onClick={() => { setShowModal(true); setIsMobileMenuOpen(false); }}>Add Expense</button>
+         <button onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }} className="btn-logout">Logout</button>
 
       {showModal && (
         <Model onClose={() => setShowModal(false)} />

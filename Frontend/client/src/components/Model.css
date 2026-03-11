@@ -86,7 +86,11 @@ textarea{
 
 @media (max-width: 768px) {
   .box {
-    width: 60%;
+    width: 90%;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin-top: 5vh;
   }
 }
 
