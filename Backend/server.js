@@ -32,7 +32,7 @@ const frontendPath = path.join(__dirname, '../Frontend/client/dist');
 app.use(express.static(frontendPath));
 
 // Catch-all route for SPA
-app.get('(.*)', (req, res) => {
+app.use( (req, res) => {
     res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
