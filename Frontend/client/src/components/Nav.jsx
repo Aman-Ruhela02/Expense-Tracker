@@ -5,6 +5,8 @@ import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 function Nav() {
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
