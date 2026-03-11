@@ -1,29 +1,31 @@
-import React from 'react'
-import "./index.css"
-import Nav from './components/Nav'
-import StatCard from './components/StatCard'
-import SpendingChart from './components/SpendingChart'
-import CategoryChart from './components/CategoryChart'
-import Transactions from './components/Transactions'
-import Model from './components/Model'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { AuthProvider } from './context/AuthContext';
+import LandingPage from './pages/LandingPage';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Dashboard from './pages/Dashboard';
+
+import "./index.css";
 
 function App() {
   return (
-    <>
-      <Nav/>
-      <StatCard/>
-      <div className="chart">
-      <SpendingChart/>
-      <CategoryChart/>
-      </div>
-      <Transactions/>
-      {/* <Model/> */}
-      
-    </>
-  )
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Router>
+      <ToastContainer position="top-right" autoClose={3000} />
+    </AuthProvider>
+  );
 }
 
-export default App
-
-
-
+export default App;

@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react'
 import "./Model.css"
 import { ToastContainer, toast } from 'react-toastify';
+import { createExpense } from '../api'
 
 function Model({ onClose }) {
 
@@ -20,29 +20,28 @@ function Model({ onClose }) {
       return;
     }
 
-    let res = await fetch("https://expensetracker-mmel.onrender.com/api/v2/expense/", {
-      method: 'POST',
-      body: JSON.stringify({ description, amount, date, textarea, category }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    try {
+      console.log("Model: Calling createExpense API...");
+      const data = await createExpense({ description, amount, date, notes: textarea, category });
+      console.log("Model: API response:", data);
 
-    const data = await res.json();
-    console.log(data);
+      toast.success("Expense Added Successfully");
 
-     toast("Expense Added Successfully");
+      // 🔥 RESET FORM
+      setAmount("")
+      setDescription("")
+      setTextarea("")
+      setDate("")
+      setCategory("")
+      setActiveCategory("")
 
-    // 🔥 RESET FORM
-    setAmount("")
-    setDescription("")
-    setTextarea("")
-    setDate("")
-    setActiveCategory("")
-
-    // 🔔 NOTIFY EVERYWHERE
-    window.dispatchEvent(new Event("expense-updated"));
-    
+      // 🔔 NOTIFY EVERYWHERE
+      console.log("Model: Dispatching expense-updated event...");
+      window.dispatchEvent(new Event("expense-updated"));
+      onClose(); // Auto close on success
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to add expense");
+    }
   };
 
   return (
@@ -87,15 +86,17 @@ function Model({ onClose }) {
           </div>
         </div>
 
-       
-
+                  
      <label htmlFor="">Category</label>
     <div className="categories">
     {["Food", "Shopping", "Transportation","Healthcare", "Bills","Entertainment","other"].map((category) => (
     <button
       key={category}
       className={`category-btn ${ActiveCategory === category ? "active" : ""}`}
-      onClick={() => setCategory(category)}
+      onClick={() => {
+        setCategory(category);
+        setActiveCategory(category);
+      }}
       
     >
       {category}

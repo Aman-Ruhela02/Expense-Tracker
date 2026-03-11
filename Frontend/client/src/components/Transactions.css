@@ -84,12 +84,14 @@ select{
     padding-left: 3%;
     padding-right: 3%;
     margin-top: 1rem;
-    border: 1px solid rgb(159, 157, 157);
-    border-radius: 10px;
+    border: 1px solid rgb(226, 232, 240);
+    border-radius: 12px;
     margin-left: 3%;
     margin-right: 3%;
-    background-color: #f9f4f4;
+    background-color: #ffffff;
     padding-bottom: 0.4rem;
+    color: #1e293b;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .list h4{

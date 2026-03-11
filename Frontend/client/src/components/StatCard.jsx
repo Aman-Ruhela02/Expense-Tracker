@@ -1,12 +1,10 @@
-
-
-import axios from 'axios'
 import React, { useState, useEffect, useCallback } from 'react'
 import "./StatCard.css"
 import { CiWallet } from "react-icons/ci";
 import { CgDollar } from "react-icons/cg";
 import { IoMdCart } from "react-icons/io";
 import { BsGraphUpArrow } from "react-icons/bs";
+import { fetchExpenses } from '../api'
 
 function StatCard() {
 
@@ -18,8 +16,7 @@ function StatCard() {
   // 🔁 stable function
   const fetchAmount = useCallback(async () => {
     try {
-      const res = await axios.get("https://expensetracker-mmel.onrender.com/api/v2/expense/");
-      const expense = res.data.data || [];
+      const expense = await fetchExpenses();
 
       const total = expense.reduce((sum, exp) => sum + exp.amount, 0);
       const highest = expense.reduce(

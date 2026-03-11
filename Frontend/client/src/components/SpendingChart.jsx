@@ -10,7 +10,7 @@ import {
   CategoryScale
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import axios from "axios";
+import { fetchExpenses } from "../api";
 
 ChartJS.register(
   LineElement,
@@ -25,15 +25,23 @@ function SpendingChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://expensetracker-mmel.onrender.com/api/v2/expense/");
-        setExpenses(Array.isArray(res.data.data) ? res.data.data : []);
+        const data = await fetchExpenses();
+        setExpenses(Array.isArray(data) ? data : []);
       } catch (error) {
         console.log(error);
         setExpenses([]);
       }
     };
     fetchData();
-  }, [expenses]);
+
+    const handleUpdate = () => {
+      console.log("SpendingChart: expense-updated event received, re-fetching...");
+      fetchData();
+    };
+
+    window.addEventListener("expense-updated", handleUpdate);
+    return () => window.removeEventListener("expense-updated", handleUpdate);
+  }, []);
 
   // last 7 days
   const dates = [...Array(7)].map((_, i) => {

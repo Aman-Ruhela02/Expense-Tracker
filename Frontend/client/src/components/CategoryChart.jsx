@@ -1,8 +1,6 @@
-
-
 import React, { useEffect, useState } from "react";
 import "./CategoryChart.css";
-import axios from "axios";
+import { fetchExpenses } from "../api";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -19,13 +17,7 @@ function CategoryChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          "https://expensetracker-mmel.onrender.com/api/v2/expense/"
-        );
-
-        const expenses = Array.isArray(res.data.data)
-          ? res.data.data
-          : [];
+        const expenses = await fetchExpenses();
 
         // 🔹 Group expenses by category
         const categoryTotals = {};
@@ -66,6 +58,14 @@ function CategoryChart() {
     };
 
     fetchData();
+
+    const handleUpdate = () => {
+      console.log("CategoryChart: expense-updated event received, re-fetching...");
+      fetchData();
+    };
+
+    window.addEventListener("expense-updated", handleUpdate);
+    return () => window.removeEventListener("expense-updated", handleUpdate);
   }, []);
 
   const options = {

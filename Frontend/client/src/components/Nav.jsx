@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import "./Nav.css"
-import  Model  from './Model'
-import { useState } from 'react'
-
+import Model from './Model'
+import { AuthContext } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 function Nav() {
-// const [show, setShow] = useState(false)
-const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <>
@@ -17,10 +23,9 @@ const [showModal, setShowModal] = useState(false);
       </div>
 
       <div className="navaddbutton">
-         {/* <button onClick={()=>setShow(!show)} > {show? "Hide chart":"+ Add Expense"} </button>
-         {show && <Model/> } */}
-         
+         {user && <span className="user-greeting">Hi, {user.name}</span>}
          <button onClick={() => setShowModal(true)}>Add Expense</button>
+         <button onClick={handleLogout} className="btn-logout">Logout</button>
 
       {showModal && (
         <Model onClose={() => setShowModal(false)} />

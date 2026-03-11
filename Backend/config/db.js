@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 
 const dbConnection = async ()=>{
 try {
-    const connection =  await mongoose.connect(process.env.MONGO_URI)
+    const connection =  await mongoose.connect(process.env.MONGO_URI, {
+        family: 4
+    })
     console.log("mongoDb connected successfully");
     
 } catch (error) {
-    console.log("Database connection error");
+    console.error("Database connection error:", error.message);
     
 }
   

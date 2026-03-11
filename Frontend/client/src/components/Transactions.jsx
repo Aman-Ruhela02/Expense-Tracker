@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useCallback } from 'react'
 import "./Transactions.css"
-import axios from 'axios'
+import { toast } from 'react-toastify';
 import UpdateModel from './UpdateModel'
+import { fetchExpenses, deleteExpense as deleteExpenseApi } from '../api'
 
 function Transactions() {
 
@@ -15,8 +16,8 @@ function Transactions() {
   // 🔁 stable fetch function
   const fetchData = useCallback(async () => {
     try {
-      const res = await axios.get("https://expensetracker-mmel.onrender.com/api/v2/expense/");
-      setData(res.data.data || []);
+      const expenses = await fetchExpenses();
+      setData(expenses || []);
     } catch (error) {
       console.log({ errmsg: error });
     }
@@ -40,21 +41,33 @@ function Transactions() {
 
   const deleteExpense = async (id) => {
     try {
-      if (!window.confirm("Delete this expense?")) return;
+      console.log("Transactions: deleteExpense() started for ID:", id);
+      console.log("Transactions: Showing confirm dialog...");
+      const isConfirmed = window.confirm("Are you sure you want to delete this expense?");
+      console.log("Transactions: Confirm result:", isConfirmed);
 
-      await axios.delete(`https://expensetracker-mmel.onrender.com/api/v2/expense/${id}`);
+      if (!isConfirmed) {
+        console.log("Transactions: Delete cancelled by user.");
+        return;
+      }
 
-      // optional optimistic update
+      console.log("Transactions: Calling deleteExpenseApi...");
+      const res = await deleteExpenseApi(id);
+      console.log("Transactions: deleteExpenseApi resolved:", res);
+
       setData(prev => prev.filter(item => item._id !== id));
+      console.log("Transactions: State updated. Dispatching event...");
 
-      notifyStatUpdate(); // 🔥 update StatCard
+      notifyStatUpdate(); 
+      toast.success("Expense deleted successfully");
     } catch (error) {
-      console.log({ errmsg: error });
+      console.error("Transactions: Delete operation failed:", error);
+      toast.error(error.response?.data?.message || "Failed to delete expense");
     }
   };
 
   const totalExp = data.reduce(
-    (sum, exp) => sum + exp.amount,
+    (sum, exp) => sum + Number(exp.amount || 0),
     0
   );
 

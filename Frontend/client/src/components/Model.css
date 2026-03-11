@@ -50,10 +50,11 @@ textarea{
     cursor: pointer;
 }
 
-.category-btn:checkmark{
-    background-color: rgb(146, 200, 224);
-    border: 2px solid rgb(2, 96, 132);
-    /* transition: all; */
+.category-btn.active{
+    background-color: var(--primary-color, #6366f1);
+    color: white;
+    border: 2px solid var(--secondary-color, #8b5cf6);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -63,8 +64,24 @@ textarea{
   background-color: white;
   height: 70vh;
   border-radius: 10px;
-  padding: 0.5rem;
+  padding: 1.5rem;
   margin-top: 0.8rem;
+  color: #1e293b; /* Dark text for light background */
+}
+
+.box label {
+    color: #475569;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    display: block;
+}
+
+.box h3 {
+    color: #1e293b;
+}
+
+.box p {
+    color: #64748b;
 }
 
 @media (max-width: 768px) {
