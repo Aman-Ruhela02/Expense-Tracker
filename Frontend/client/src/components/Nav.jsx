@@ -31,11 +31,11 @@ function Nav() {
          {user && <span className="user-greeting">Hi, {user.name}</span>}
          <button onClick={() => { setShowModal(true); setIsMobileMenuOpen(false); }}>Add Expense</button>
          <button onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }} className="btn-logout">Logout</button>
+      </div>
 
       {showModal && (
         <Model onClose={() => setShowModal(false)} />
       )}
-      </div>
     </div>
       
     </>
