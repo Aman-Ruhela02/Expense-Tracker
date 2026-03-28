@@ -27,14 +27,14 @@ dbConnection()
 app.use('/api/v2/expense',expenseRouters)
 app.use('/api/v2/auth', authRouters)
 
-// Serve frontend static files
-const frontendPath = path.join(__dirname, '../Frontend/client/dist');
-app.use(express.static(frontendPath));
+// // Serve frontend static files
+// const frontendPath = path.join(__dirname, '../Frontend/client/dist');
+// app.use(express.static(frontendPath));
 
-// Catch-all route for SPA
-app.use( (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
-});
+// // Catch-all route for SPA
+// app.use( (req, res) => {
+//     res.sendFile(path.join(frontendPath, 'index.html'));
+// });
 
 const server = app.listen(port, () => {
     console.log(`server is running on the port ${port}`);
