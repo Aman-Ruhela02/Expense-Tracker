@@ -17,8 +17,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: [
-        'https://expense-tracker-5vz4.onrender.com',
-        'https://expensetracker-mmel.onrender.com',
+        'https://expense-tracker-iota-sandy.vercel.app/',
         'http://localhost:5173'
     ]
 }))
